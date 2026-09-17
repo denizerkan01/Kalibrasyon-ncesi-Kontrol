@@ -5,12 +5,14 @@ import pyperclip
 import serial.tools.list_ports
 import general_functions as fnc
 from types import SimpleNamespace
+
 from pywinauto.keyboard import send_keys
 from pywinauto.application import Application
 import AccTesti as AccTesti
 import GyroTesti as GyroTesti
 import MagnTesti as MagnTesti
 import KalibIdentityTesti as KalibIdentityTesti
+import DataSelectTesti as DataSelectTesti
 
 #Çalıştırılan dosya konumu bulunur
 path_arview = r"C:\Program Files\ArView\ArView.exe"
@@ -88,6 +90,17 @@ def device_pn(device_folder):
                 return line.split('=', 1)[1].strip().strip('"')
     return None
 
+def open_data_select(dlg, checkbox_states):
+
+    dlg.child_window(title="Data Select", control_type="Button").click_input()
+    
+    for name, desired in checkbox_states:
+        checkbox = dlg.child_window(title=name, control_type="CheckBox")
+        state = checkbox.get_toggle_state()
+        if state != desired:
+            checkbox.click_input()
+
+    dlg.child_window(title="Save", control_type="Pane", found_index=0).click_input()
 
 def main():
 
@@ -114,6 +127,8 @@ def main():
 
     uretim_folder_path = os.path.join(base_path, r"UretimSonrasiTesti")
     s3a_folder_path = os.path.join(uretim_folder_path, r"S3A")
+
+    open_data_select(dlg, limits.checkbox_states_general)
 
     #Test 1: Tüm Kalibrasyon Matrisleri Identity mi?
 

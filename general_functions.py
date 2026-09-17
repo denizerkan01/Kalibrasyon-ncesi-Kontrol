@@ -3,6 +3,7 @@ import os
 import glob
 import csv
 from pathlib import Path
+from pywinauto.mouse import move
 from pywinauto.keyboard import send_keys
 import pandas as pd
 import numpy as np
@@ -18,6 +19,7 @@ def try_connect(dlg, port, label):
 
     dlg.child_window(title="Connect", control_type="Button").wait("visible enabled").click_input()
     time.sleep(1)
+    move(coords=(600, 300))
     menu_item = dlg.child_window(title=port, control_type="MenuItem", found_index=0)
     menu_item.wait("visible enabled", timeout=5).click_input()
 
@@ -84,6 +86,8 @@ def uart_connect(dlg):
     target_port = get_uart_port()
 
     dlg.child_window(title="Connect", control_type="Button").wait("visible enabled").click_input()
+    time.sleep(1)
+    move(coords=(600, 300))
     menu_item = dlg.child_window(title=target_port, control_type="MenuItem", found_index=0)
     menu_item.wait("visible enabled", timeout=5).click_input()
 """

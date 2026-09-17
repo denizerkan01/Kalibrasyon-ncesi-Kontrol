@@ -1,4 +1,4 @@
-firmware_version = "00A000000001000A"
+firmware_version = "00A000000002T03B"
 device_name = "ArNav S3A"
 arview_path = r"C:\Program Files\ArView\ArView.exe"
 
@@ -52,7 +52,7 @@ max_gyro_Z_value = 0.4
 var_gyro_value =  0.001
 
 min_magn_norm = 0.37
-max_magn_norm = 0.57
+max_magn_norm = 1
 
 var_magn_value = 0.01
 
@@ -67,13 +67,13 @@ checkbox_states_general = [
     ("Accelerometer", 1),
     ("Gyroscope", 1),
     ("Magnetometer", 1),
-    ("Euler Angles", 1),
+    ("Euler Angles", 0),
     ("Latitude Longitude Altitude", 0),
     ("Pressure", 0),
     ("Velocity", 0),
     ("Scaled Llh", 0),
     ("Status", 1),
-    ("Low Rate", 1),
+    ("Low Rate", 0),
 ]
 
 expected_columns_general = [
