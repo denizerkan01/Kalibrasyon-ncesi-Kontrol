@@ -117,7 +117,7 @@ def main():
 
     #Test 1: Tüm Kalibrasyon Matrisleri Identity mi?
 
-    print("***Test 1 - Kalibrasyon Matris Kontrol Testi Sonucu:")
+    #print("***Test 1 - Kalibrasyon Matris Kontrol Testi Sonucu:")
 
     results_Kalibrasyon_Kontrol = KalibIdentityTesti.KalibIdentityTesti(dlg, s3a_folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix, limits.firmware_version)
 
@@ -138,16 +138,16 @@ def main():
         if results_Kalibrasyon_Kontrol["acc_is_calibrated"] == False or results_Kalibrasyon_Kontrol["gyro_is_calibrated"] == False or results_Kalibrasyon_Kontrol["magn_is_calibrated"] == False:
             sys.exit("Kalibrasyon matrislerini initial hale getiriniz.")
 
-    print("***Test 2 - FW Versiyon Kontrol Testi Sonucu:")
+    #print("***Test 2 - FW Versiyon Kontrol Testi Sonucu:")
 
     if results_Kalibrasyon_Kontrol["firmware_version_match"] == True:
         print("Test 2: BAŞARILI")
-        print("Sistemde bulunan FW doğrudur.")
+        #print("Sistemde bulunan FW doğrudur.")
     elif results_Kalibrasyon_Kontrol["firmware_version_match"] == False:
         print("Test 2: BAŞARISIZ")
         sys.exit("Sistemde bulunan FW yanlıştır. 00A000000001000A yüklü olması beklenmektedir.")
 
-    print("***Test 3 - Acc Kontrol Testi Sonucu:")
+    #print("***Test 3 - Acc Kontrol Testi Sonucu:")
     acilis_folder_acc = fnc.navigate_to_folder(dlg, s3a_folder_path, limits.acc_folder)
 
     results_Acc_Acilis = AccTesti.test_acc(dlg, s3a_folder_path, acilis_folder_acc,  limits.max_norm_value, limits.min_norm_value, limits.min_acc_X_value, limits.max_acc_X_value, limits.min_acc_Y_value, limits.max_acc_Y_value, limits.min_acc_Z_value, limits.max_acc_Z_value, limits.var_acc_value, limits.sleep_time_acc)
@@ -171,7 +171,7 @@ def main():
         if results_Acc_Acilis["AccNormValue"] or results_Acc_Acilis["AccValue"] or results_Acc_Acilis["AccVar"]:
             sys.exit("Test 3: BAŞARISIZ")
 
-    print("***Test 4 - Gyro Kontrol Testi Sonucu:")
+    #print("***Test 4 - Gyro Kontrol Testi Sonucu:")
 
     acilis_folder_gyro = fnc.navigate_to_folder(dlg, s3a_folder_path, limits.gyro_folder)
     
@@ -198,7 +198,7 @@ def main():
             sys.exit("Test 4: BAŞARISIZ")
 
 
-    print("***Test 5 - Magn Kontrol Testi Sonucu:")
+    #print("***Test 5 - Magn Kontrol Testi Sonucu:")
     
     acilis_folder_magn = fnc.navigate_to_folder(dlg, s3a_folder_path, limits.magn_folder)
         
@@ -218,7 +218,7 @@ def main():
         if results_Magn["MagnNormValue"] or results_Magn["MagnVar"]:
             sys.exit("Test 5: BAŞARISIZ")
 
-    print("Test 6 - UART Testi Sonucu:")
+    #print("Test 6 - UART Testi Sonucu:")
     dlg.child_window(title="Disconnect", control_type="Button").click_input()
     
     ports = list(serial.tools.list_ports.comports())
@@ -252,6 +252,8 @@ def main():
             print("UART ile Bağlanılamadı")
         if result_232 == False:
                     print("RS232 ile Bağlanılamadı")
+
+    dlg.child_window(title="Disconnect", control_type="Button").click_input()
 
 
 

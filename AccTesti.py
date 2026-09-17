@@ -83,7 +83,7 @@ def check_calibration_test(sensor_data, max_norm_value, min_norm_value, min_acc_
 
 def test_acc(dlg, base_path, acc_folder, max_norm_value, min_norm_value, min_acc_X_value, max_acc_X_value, min_acc_Y_value, max_acc_Y_value, min_acc_Z_value, max_acc_Z_value, var_acc_value, sleep_time):
 
-    print("Hard reset")
+    #print("Hard reset")
 
     time.sleep(2)
 

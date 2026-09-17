@@ -26,14 +26,11 @@ def check_calibration_test(sensor_data, min_magn_norm, max_magn_norm, var_magn_v
                 mean_magn_Z ** 2
             )
 
-    print(magn_Norm)
 
     if min_magn_norm <= magn_Norm <= max_magn_norm:
         result["MagnNormValue"] = True
     else:
         result["MagnNormValue"] = False
-
-    print(result["MagnNormValue"])
 
     magn_X_20_sample = sensor_data.magnX[:20]
     magn_Y_20_sample = sensor_data.magnY[:20]
@@ -66,7 +63,7 @@ def check_calibration_test(sensor_data, min_magn_norm, max_magn_norm, var_magn_v
 
 def test_magn(dlg, base_path, magn_folder, min_magn_norm, max_magn_norm, var_magn_value, sleep_time):
 
-    print("Hard reset")
+    #print("Hard reset")
 
     time.sleep(2)
 

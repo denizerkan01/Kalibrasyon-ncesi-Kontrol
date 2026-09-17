@@ -81,7 +81,7 @@ def check_calibration_test(sensor_data, max_gyro_value, min_gyro_value, min_gyro
 
 def test_gyro(dlg, base_path, gyro_folder,  max_gyro_value, min_gyro_value, min_gyro_X_value, max_gyro_X_value, min_gyro_Y_value, max_gyro_Y_value, min_gyro_Z_value, max_gyro_Z_value, var_gyro_value, sleep_time):
 
-    print("Hard reset")
+    #print("Hard reset")
 
     time.sleep(2)
 
