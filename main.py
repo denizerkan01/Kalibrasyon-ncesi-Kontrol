@@ -122,7 +122,7 @@ def main():
     results_Kalibrasyon_Kontrol = KalibIdentityTesti.KalibIdentityTesti(dlg, s3a_folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix, limits.firmware_version)
 
     if results_Kalibrasyon_Kontrol["calib_ctrl_success"] == True:
-        print("Sistemde yüklü kalibrasyon yoktur.")
+        #print("Sistemde yüklü kalibrasyon yoktur.")
         print("Test 1: BAŞARILI")
     else:
         print("Test 1: BAŞARISIZ")
