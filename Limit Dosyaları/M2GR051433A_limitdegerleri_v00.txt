@@ -5,26 +5,61 @@ arview_path = r"C:\Program Files\ArView\ArView.exe"
 base_path = r"C:\Users\Deniz Erkan\Desktop\test\Sistemler\Uretim Sonrasi Testi\M2\GR"
 
 data_select_folder = "Data Select"
-kalibrasyon_kontrol_folder = "Kalibrasyon Testi"
+kalibrasyon_kontrol_folder = "Kalibrasyon Matris Testi"
 hard_reset_folder = r"Reset Testi\Hard Reset"
 soft_reset_folder = r"Reset Testi\Soft Reset"
-acc_acilis_folder = r"ACC Norm Testi\Acilis Testi"
-acc_dondurme_folder = r"ACC Norm Testi\Dondurme Testi"
+acc_folder = r"Acc Testi"
 euler_kontrol_folder = r"Euler Kontrol Testi"
-gyro_z_folder = r"Gyro Z Testi"
+gyro_folder = r"Gyro Testi"
+gyro_el_folder = r"Gyro Elements Testi"
 gps_folder = r"GPS Testi"
-magn_norm_folder = r"Magn Testi"
+magn_folder = r"Magn Testi"
 rs422_folder = r"RS422"
+
 
 sleep_time_data_select = 5
 sleep_time_reset_testi = 5
 sleep_time_acc_norm_gyro_acilis = 5
-sleep_time_acc_dondurme = 5
+sleep_time_acc = 5
 sleep_time_euler_kontrol = 5
-sleep_time_gyroz = 60
+sleep_time_gyro = 2
 sleep_time_gps = 180
 sleep_time_cift_anten = 300
 sleep_time_magn = 120
+sleep_time_gyro_el = 0.5
+
+max_norm_value = 10.0
+min_norm_value = 9.60
+
+min_acc_X_value = -0.4
+max_acc_X_value = 0.4
+
+min_acc_Y_value = -0.4
+max_acc_Y_value = 0.4
+
+min_acc_Z_value = -10.102
+max_acc_Z_value = -9.502
+
+var_acc_value =  0.001
+
+max_gyro_value = 0.7
+min_gyro_value = 0.0
+
+min_gyro_X_value = -0.4
+max_gyro_X_value = 0.4
+
+min_gyro_Y_value = -0.4
+max_gyro_Y_value = 0.4
+
+min_gyro_Z_value = -0.4
+max_gyro_Z_value = 0.4
+
+var_gyro_value =  0.001
+
+min_magn_norm = 0.37
+max_magn_norm = 0.57
+
+var_magn_value = 0.01
 
 gps_testi_id = 35
 low_rate_rtk_id = 79

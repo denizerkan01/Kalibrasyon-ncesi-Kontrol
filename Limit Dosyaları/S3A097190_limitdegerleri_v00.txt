@@ -10,6 +10,7 @@ acc_folder = r"Acc Testi"
 gyro_folder = r"Gyro Testi"
 magn_folder = r"Magn Testi"
 uart_folder = r"Uart RS 232 Testi"
+gyro_el_folder = r"Gyro Elements Testi"
 
 
 sleep_time_data_select = 5
@@ -20,6 +21,7 @@ sleep_time_euler_kontrol = 5
 sleep_time_gyro = 2
 sleep_time_magn = 2
 sleep_time_uart = 5
+sleep_time_gyro_el = 0.5
 
 acc_acilis_successfull_needed = 10
 

@@ -1,8 +1,15 @@
 MiscAdminMode = 
+<<<<<<< Updated upstream
 DeviceSN = "S3A001"
 DevicePN = "S3A097190"
 DeviceName = "S3A"
 FirmwareVersion = "00A000000001000A"
+=======
+DeviceSN = "25120076"
+DevicePN = "S3A097190"
+DeviceName = "ArNav S3A"
+FirmwareVersion = "00A000000002T04B"
+>>>>>>> Stashed changes
 LocalMagNorm = 0.481439
 LocalMagDeclination = 0.109292
 LocalMagInclination = 1.01469
@@ -18,7 +25,11 @@ MessageId = 87
 ErrorID = 0
 MiscPortBaudRate = 1285
 MiscPortProtocolType = 257
+<<<<<<< Updated upstream
 MiscOutputDataRate = 10
+=======
+MiscOutputDataRate = 131586
+>>>>>>> Stashed changes
 MiscCurrentMode = 3
 MiscCurrentMeas = 0
 CurrentSensorStatus = 0
@@ -33,3 +44,12 @@ NorthType = 0
 InitAlignTime = 0.1
 MiscCalibGyroTemp = [0,0,0]
 MiscCalibAccTemp = [0,0,0]
+MiscRANorm = [1,10,0,-0.5,0.5]
+MiscRAVar = [1,0.04,0,0,0.08]
+MiscRARot = [1,0.00261799,0,0,0.00523599]
+MiscRARate = [1,0.0698132,0,0,0.139626]
+MiscRHNorm = [1,0.08,0,-0.15,0.15]
+MiscRHVar = [1,0.1,0,0,0.3]
+MiscRHRot = [1,0.0872665,0,0,1]
+MiscRHInno = [1,1,0,-10,10]
+MiscRHDip = [1,0.174533,0,-0.523599,0.523599]
