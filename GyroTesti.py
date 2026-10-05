@@ -95,4 +95,25 @@ def test_gyro(dlg, base_path, gyro_folder,  max_gyro_value, min_gyro_value, min_
             
     results_calib_test = check_calibration_test(sensor_data_gyro_acilis,  max_gyro_value, min_gyro_value, min_gyro_X_value, max_gyro_X_value, min_gyro_Y_value, max_gyro_Y_value, min_gyro_Z_value, max_gyro_Z_value, var_gyro_value)
 
+    if results_calib_test["GyroResult"] == True:
+        print("Test 4: BAŞARILI")
+    elif results_calib_test["GyroResult"] == False:
+        print("Test 4: BAŞARISIZ")
+        if results_calib_test["GyroNormValue"] == False:
+            print("Gyro Norm Hatalı")
+        if results_calib_test["GyroXValue"] == False:
+            print("Gyro X Değer Aralığı Yanlış")
+        if results_calib_test["GyroYValue"] == False:
+            print("Gyro Y Değer Aralığı Yanlış")
+        if results_calib_test["GyroZValue"] == False:
+            print("Gyro Z Değer Aralığı Yanlış")
+        if results_calib_test["GyroXVar"] == False:
+            print("Gyro Var X Değer Aralığı Yanlış")
+        if results_calib_test["GyroYVar"] == False:
+            print("Gyro Var Y Değer Aralığı Yanlış")
+        if results_calib_test["GyroZVar"] == False:
+            print("Gyro Var Z Değer Aralığı Yanlış")
+        if results_calib_test["GyroNormValue"] or results_calib_test["GyroValue"] or results_calib_test["GyroVar"]:
+            print("BAŞARISIZ")
+
     return results_calib_test

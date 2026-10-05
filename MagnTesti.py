@@ -78,4 +78,19 @@ def test_magn(dlg, base_path, magn_folder, min_magn_norm, max_magn_norm, var_mag
         
     results_calib_test = check_calibration_test(sensor_data_magn_acilis, min_magn_norm, max_magn_norm, var_magn_value)
 
+    if results_calib_test["MagnResult"] == True:
+        print("Test 5: BAŞARILI")
+    elif results_calib_test["MagnResult"] == False:
+        print("Test 5: BAŞARISIZ")
+        if results_calib_test["MagnNormValue"] == False:
+            print("Magn Norm Hatalı")
+        if results_calib_test["MagnXVar"] == False:
+            print("Magn Var X Değer Aralığı Yanlış")
+        if results_calib_test["MagnYVar"] == False:
+            print("Magn Var Y Değer Aralığı Yanlış")
+        if results_calib_test["MagnZVar"] == False:
+            print("Magn Var Z Değer Aralığı Yanlış")
+        if results_calib_test["MagnNormValue"] or results_calib_test["MagnVar"]:
+            print("Test 5: BAŞARISIZ")
+
     return results_calib_test

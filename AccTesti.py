@@ -98,4 +98,25 @@ def test_acc(dlg, base_path, acc_folder, max_norm_value, min_norm_value, min_acc
         
     results_calib_test = check_calibration_test(sensor_data_acc_acilis, max_norm_value, min_norm_value, min_acc_X_value, max_acc_X_value, min_acc_Y_value, max_acc_Y_value, min_acc_Z_value, max_acc_Z_value, var_acc_value)
 
+    if results_calib_test["AccResult"] == True:
+        print("Test 3: BAŞARILI")
+    elif results_calib_test["AccResult"] == False:
+        print("Test 3: BAŞARISIZ")
+        if results_calib_test["AccNormValue"] == False:
+            print("Acc Norm Hatalı")
+        if results_calib_test["AccXValue"] == False:
+            print("Acc X Değer Aralığı Yanlış")
+        if results_calib_test["AccYValue"] == False:
+            print("Acc Y Değer Aralığı Yanlış")
+        if results_calib_test["AccZValue"] == False:
+            print("Acc Z Değer Aralığı Yanlış")
+        if results_calib_test["AccXVar"] == False:
+            print("Acc Var X Değer Aralığı Yanlış")
+        if results_calib_test["AccYVar"] == False:
+            print("Acc Var Y Değer Aralığı Yanlış")
+        if results_calib_test["AccZVar"] == False:
+            print("Acc Var Z Değer Aralığı Yanlış")
+        if results_calib_test["AccNormValue"] or results_calib_test["AccValue"] or results_calib_test["AccVar"]:
+            print("BAŞARISIZ")
+
     return results_calib_test

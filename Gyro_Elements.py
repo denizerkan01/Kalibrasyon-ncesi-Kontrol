@@ -51,11 +51,8 @@ def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time):
         return None
     
     gyro_X = sensor_data_gyro_elements.gyroX
-    print("Gyro X", gyro_X[1])
     gyro_Y = sensor_data_gyro_elements.gyroY
-    print("Gyro Y", gyro_Y[1])
     gyro_Z = sensor_data_gyro_elements.gyroZ
-    print("Gyro Z", gyro_Z[1])
 
     result_gyroX = any_same(gyro_X)
     result_gyroY = any_same(gyro_Y)
@@ -69,9 +66,9 @@ def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time):
     result["Gyro_Success"] = result["GyroX_El"] and result["GyroY_El"] and result["GyroZ_El"]
 
     if result["Gyro_Success"] == False:
-        print("Test 6: BAŞARILI")
+        print("Test 7: BAŞARILI")
     elif result["Gyro_Success"] == True:
-        print("Test 6: BAŞARISIZ")
+        print("Test 7: BAŞARISIZ")
         if result["GyroX_El"] == True:
             print("Gyro X'de aynı veri gözlemlenen satırlar:", result_gyroX["row"])
         if result["GyroY_El"] == True:

@@ -1,4 +1,4 @@
-firmware_version = "00A000000001000A"
+firmware_version = "00A000000002T04B"
 device_name = "ArNav S3A"
 arview_path = r"C:\Program Files\ArView\ArView.exe"
 
