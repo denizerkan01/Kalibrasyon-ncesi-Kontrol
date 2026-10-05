@@ -1,35 +1,24 @@
 MiscAdminMode = 
-<<<<<<< Updated upstream
-DeviceSN = "S3A001"
-DevicePN = "S3A097190"
-DeviceName = "S3A"
-FirmwareVersion = "00A000000001000A"
-=======
-DeviceSN = "25120076"
+DeviceSN = "25120083"
 DevicePN = "S3A097190"
 DeviceName = "ArNav S3A"
 FirmwareVersion = "00A000000002T04B"
->>>>>>> Stashed changes
 LocalMagNorm = 0.481439
-LocalMagDeclination = 0.109292
+LocalMagDeclination = 0.1024
 LocalMagInclination = 1.01469
 BodyAlignment = [1,0,0,0,1,0,0,0,1]
 CalibMag = [1,0,0,0,1,0,0,0,1,0,0,0]
-HardwareVersion = "S325A-A"
+HardwareVersion = "S325E"
 MiscCalibMagFac = [1,0,0,0,1,0,0,0,1,0,0,0]
 MiscCalibAccFac = [1,0,0,0,1,0,0,0,1,0,0,0]
 MiscCalibGyroFac = [1,0,0,0,1,0,0,0,1,0,0,0]
 MiscFilterAcc = [1,0,0,0,0,0,0]
 MiscFilterGyro = [1,0,0,0,0,0,0]
-MessageId = 87
+MessageId = 4311
 ErrorID = 0
 MiscPortBaudRate = 1285
 MiscPortProtocolType = 257
-<<<<<<< Updated upstream
-MiscOutputDataRate = 10
-=======
-MiscOutputDataRate = 131586
->>>>>>> Stashed changes
+MiscOutputDataRate = 1285
 MiscCurrentMode = 3
 MiscCurrentMeas = 0
 CurrentSensorStatus = 0
@@ -41,7 +30,7 @@ State = 0
 CalibCompassRose = [0,0,0,0,0,0,0]
 MiscAlgoMode = 1
 NorthType = 0
-InitAlignTime = 0.1
+InitAlignTime = 1
 MiscCalibGyroTemp = [0,0,0]
 MiscCalibAccTemp = [0,0,0]
 MiscRANorm = [1,10,0,-0.5,0.5]

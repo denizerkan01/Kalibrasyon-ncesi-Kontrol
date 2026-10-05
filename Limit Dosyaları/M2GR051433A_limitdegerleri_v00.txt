@@ -109,7 +109,7 @@ checkbox_states_target_meas_gyroz_testi_m2gr = [
 checkbox_states_general = [
     ("Accelerometer", 1),
     ("Gyroscope", 1),
-    ("Magnetometer", 0),
+    ("Magnetometer", 1),
     ("Euler Angles", 1),
     ("Latitude Longitude Altitude", 0),
     ("Pressure", 1),

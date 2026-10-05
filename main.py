@@ -5,27 +5,36 @@ import pyperclip
 import serial.tools.list_ports
 import general_functions as fnc
 from types import SimpleNamespace
-<<<<<<< Updated upstream
-=======
+
 import numpy as np
 
->>>>>>> Stashed changes
+
 from pywinauto.keyboard import send_keys
 from pywinauto.application import Application
 import AccTesti as AccTesti
 import GyroTesti as GyroTesti
 import MagnTesti as MagnTesti
 import KalibIdentityTesti as KalibIdentityTesti
-<<<<<<< Updated upstream
-=======
-import DataSelectTesti as DataSelectTesti
+
 import Gyro_Elements as Gyro_Elements
 import deneme as deneme
->>>>>>> Stashed changes
+
 
 #Çalıştırılan dosya konumu bulunur
 path_arview = r"C:\Program Files\ArView\ArView.exe"
 base_path = os.path.dirname(os.path.abspath(__file__)) 
+
+def open_data_select(dlg, checkbox_states):
+
+    dlg.child_window(title="Data Select", control_type="Button").click_input()
+    
+    for name, desired in checkbox_states:
+        checkbox = dlg.child_window(title=name, control_type="CheckBox")
+        state = checkbox.get_toggle_state()
+        if state != desired:
+            checkbox.click_input()
+
+    dlg.child_window(title="Save", control_type="Pane", found_index=0).click_input()
 
 def create_folder(base_path):
 
@@ -168,8 +177,8 @@ def main():
     #if not fnc.try_connect(dlg, target_enhanced, "Enhanced"):
     #    sys.exit("!!! Can't Connect to the Device !!!")
 
-<<<<<<< Updated upstream
-=======
+
+
     uretim_folder_path = os.path.join(base_path, r"UretimSonrasiTesti")
 
     if pn_dvc == "M2GR051433A":
@@ -183,7 +192,7 @@ def main():
     
     open_data_select(dlg, limits.checkbox_states_general)
 
->>>>>>> Stashed changes
+
     #Test 1: Tüm Kalibrasyon Matrisleri Identity mi?
     
     print("***Test 1 - Kalibrasyon Matris Kontrol Testi Sonucu:")
