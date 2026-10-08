@@ -18,12 +18,12 @@ import KalibIdentityTesti as KalibIdentityTesti
 import UartRs232Testi as UartRs232Testi
 
 import Gyro_Elements as Gyro_Elements
-import deneme as deneme
 
 
 #Çalıştırılan dosya konumu bulunur
 path_arview = r"C:\Program Files\ArView\ArView.exe"
 base_path = os.path.dirname(os.path.abspath(__file__)) 
+active_dlg = None
 
 def open_data_select(dlg, checkbox_states):
 
@@ -92,9 +92,11 @@ def find_limit_file_m2_gr(pn_dvc, file_path):
     return m2_gr_limitdegerleri_v00
 
 def launch_arview(path):
+    global active_dlg
     app = Application(backend="uia").start(path)
     dlg = app.window(auto_id="FormMain", control_type="Window")
     dlg.wait("visible ready", timeout=60)
+    active_dlg = dlg
     return dlg
 
 def device_pn(device_folder):
@@ -137,15 +139,19 @@ def device_pn(device_folder):
     return None
 
 
-def main():
+def _main():
+
+    fnc.check_stop_requested()
 
     create_folder(base_path)
 
     device_folder_name = "Device"
 
     pn_dvc = device_pn(device_folder_name)
+    fnc.check_stop_requested()
 
     print("PN:", pn_dvc)
+    print("@@PART_NUMBER:" + str(pn_dvc), flush=True)
 
     if pn_dvc == "M2GR051433A":
         limit_data_m2_gr = find_limit_file_m2_gr(pn_dvc, base_path)
@@ -158,6 +164,7 @@ def main():
 
     
     time.sleep(3)
+    fnc.check_stop_requested()
 
     dlg = launch_arview(limits.arview_path) 
     
@@ -177,12 +184,17 @@ def main():
 
 
     open_data_select(dlg, limits.checkbox_states_general)
+    fnc.check_stop_requested()
 
     #Test 1: Tüm Kalibrasyon Matrisleri Identity mi?
+    print("@@PHASE:1,2", flush=True)
     
     print("***Test 1 - Kalibrasyon Matris Kontrol Testi Sonucu:")
 
     results_Kalibrasyon_Kontrol = KalibIdentityTesti.KalibIdentityTesti(dlg, folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix_acc, limits.firmware_version)
+    fnc.check_stop_requested()
+    print("@@RESULT:1:" + ("PASS" if results_Kalibrasyon_Kontrol["calib_ctrl_success"] == True else "FAIL"), flush=True)
+    print("@@RESULT:2:" + ("PASS" if results_Kalibrasyon_Kontrol["firmware_version_match"] == True else "FAIL"), flush=True)
 
 
     if results_Kalibrasyon_Kontrol["calib_ctrl_success"] == True:
@@ -209,34 +221,73 @@ def main():
         print("Test 2: BAŞARISIZ")
     
     print("***Test 3 - Acc Kontrol Testi Sonucu:")
+    print("@@PHASE:3", flush=True)
 
     acilis_folder_acc = fnc.navigate_to_folder(dlg, folder_path, limits.acc_folder)
     results_Acc_Acilis = AccTesti.test_acc(dlg, folder_path, acilis_folder_acc,  limits.max_norm_value, limits.min_norm_value, limits.min_acc_X_value, limits.max_acc_X_value, limits.min_acc_Y_value, limits.max_acc_Y_value, limits.min_acc_Z_value, limits.max_acc_Z_value, limits.var_acc_value, limits.sleep_time_acc)
+    print("@@RESULT:3:" + ("PASS" if results_Acc_Acilis is not None and results_Acc_Acilis.get("AccResult") == True else "FAIL"), flush=True)
+    fnc.check_stop_requested()
     
     print("***Test 4 - Gyro Kontrol Testi Sonucu:")
+    print("@@PHASE:4", flush=True)
 
     acilis_folder_gyro = fnc.navigate_to_folder(dlg, folder_path, limits.gyro_folder)
     results_Gyro_Acilis = GyroTesti.test_gyro(dlg, folder_path, acilis_folder_gyro,  limits.max_gyro_value, limits.min_gyro_value, limits.min_gyro_X_value, limits.max_gyro_X_value, limits.min_gyro_Y_value, limits.max_gyro_Y_value, limits.min_gyro_Z_value, limits.max_gyro_Z_value, limits.var_gyro_value, limits.sleep_time_gyro)
+    print("@@RESULT:4:" + ("PASS" if results_Gyro_Acilis is not None and results_Gyro_Acilis.get("GyroResult") == True else "FAIL"), flush=True)
+    fnc.check_stop_requested()
     
     print("***Test 5 - Magn Kontrol Testi Sonucu:")
+    print("@@PHASE:5", flush=True)
 
     acilis_folder_magn = fnc.navigate_to_folder(dlg, folder_path, limits.magn_folder)     
     results_Magn = MagnTesti.test_magn(dlg, folder_path, acilis_folder_magn,  limits.min_magn_norm, limits.max_magn_norm, limits.var_magn_value, limits.sleep_time_gyro)
+    print("@@RESULT:5:" + ("PASS" if results_Magn is not None and results_Magn.get("MagnResult") == True else "FAIL"), flush=True)
+    fnc.check_stop_requested()
     
     print("Test 6 - UART Testi Sonucu:")
+    print("@@PHASE:6", flush=True)
     
     dlg.child_window(title="Disconnect", control_type="Button").click_input()
     
 
-    UartRs232Testi.UartRs232Testi(dlg, folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix_acc, limits.firmware_version)
+    result_uart = UartRs232Testi.UartRs232Testi(dlg, folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix_acc, limits.firmware_version)
+    print("@@RESULT:6:" + ("PASS" if result_uart == True else "FAIL"), flush=True)
+    fnc.check_stop_requested()
 
     print("Test 7 - Gyro Testi Sonucu:")
+    print("@@PHASE:7", flush=True)
 
     acilis_folder_gyro_el = fnc.navigate_to_folder(dlg, folder_path, limits.gyro_el_folder)
     result_Gyro_El = Gyro_Elements.Gyro_Elements(dlg, folder_path, limits.gyro_el_folder, limits.sleep_time_gyro_el)
+    print("@@RESULT:7:" + ("PASS" if result_Gyro_El is not None and result_Gyro_El.get("Gyro_Success") == False else "FAIL"), flush=True)
+    fnc.check_stop_requested()
+    print("@@PHASE:DONE", flush=True)
     
 
     dlg.child_window(title="Disconnect", control_type="Button").click_input()
+
+    time.sleep(5)
+    send_keys("%{F4}")
+
+
+def main():
+    try:
+        _main()
+    except fnc.StopRequested:
+        print("Test durdurma isteği alındı. Güvenli durdurma tamamlandı.")
+    finally:
+        if active_dlg is not None:
+            try:
+                disconnect = active_dlg.child_window(title="Disconnect", control_type="Button")
+                if disconnect.exists(timeout=0.5):
+                    disconnect.click_input()
+            except Exception:
+                pass
+            try:
+                if active_dlg.exists():
+                    active_dlg.close()
+            except Exception:
+                pass
     
 
 
@@ -245,3 +296,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+

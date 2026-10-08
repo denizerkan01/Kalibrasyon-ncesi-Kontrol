@@ -10,6 +10,20 @@ from dataclasses import dataclass, field
 import serial.tools.list_ports
 from pywinauto.timings import TimeoutError as PWTimeoutError
 
+
+class StopRequested(Exception):
+    """Raised when the web interface requests a safe stop between steps."""
+
+
+def stop_requested():
+    stop_file = os.environ.get("KALIB_STOP_FILE")
+    return bool(stop_file and os.path.exists(stop_file))
+
+
+def check_stop_requested():
+    if stop_requested():
+        raise StopRequested("Stop requested from the web interface")
+
 def find_port(keyword, ports):
     return next((p.device for p in ports if keyword in p.description), None)
 
@@ -186,6 +200,13 @@ def auto_start(dlg,  base_path, sub_folder, sleep_time):
 
     while file_size == 0:
 
+        if stop_requested():
+            try:
+                dlg.child_window(title="Stop", control_type="Button").click_input()
+            except Exception:
+                pass
+            raise StopRequested("Stop requested during sensor capture")
+
         try:
             fd = os.open(latest_log, os.O_RDONLY)
             try:
@@ -202,6 +223,8 @@ def auto_start(dlg,  base_path, sub_folder, sleep_time):
             dlg.child_window(title="Stop", control_type="Button").click_input()
 
             break
+
+        time.sleep(0.25)
 
     time.sleep(1)
 
