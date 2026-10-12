@@ -1,5 +1,6 @@
 firmware_version = "00A10901C012002F"
 device_name = "ArNav M2-GR"
+hw_ver = "M223A-A"
 arview_path = r"C:\Program Files\ArView\ArView.exe"
 
 base_path = r"C:\Users\Deniz Erkan\Desktop\test\Sistemler\Uretim Sonrasi Testi\M2\GR"

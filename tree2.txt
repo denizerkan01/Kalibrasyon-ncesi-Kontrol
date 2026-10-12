@@ -1,0 +1,164 @@
+Control Identifiers:
+
+Dialog - 'ArNav Series Firmware Update'    (L536, T175, R1384, B845)
+['ArNav Series Firmware Update', 'ArNav Series Firmware UpdateDialog', 'Dialog']
+child_window(title="ArNav Series Firmware Update", auto_id="MainForm", control_type="Window")
+   | 
+   | GroupBox - ''    (L550, T219, R1368, B820)
+   | ['GroupBox', 'ArNav Series Firmware Update 1.1.0GroupBox']
+   | child_window(auto_id="mainGroupBox", control_type="Group")
+   |    | 
+   |    | CheckBox - 'Enable Hex Property Check'    (L560, T689, R756, B710)
+   |    | ['Enable Hex Property CheckCheckBox', 'CheckBox', 'Enable Hex Property Check']
+   |    | child_window(title="Enable Hex Property Check", auto_id="cbHexPropertyCheck", control_type="CheckBox")
+   |    | 
+   |    | Static - 'Decrypt Key P1 (32 Char):'    (L556, T624, R719, B640)
+   |    | ['Decrypt Key P1 (32 Char):', 'Decrypt Key P1 (32 Char):Static', 'Static', 'Static0', 'Static1']
+   |    | child_window(title="Decrypt Key P1 (32 Char):", auto_id="lblDecryptKey1", control_type="Text")
+   |    | 
+   |    | Static - 'Decrypt Key P2 (32 Char):'    (L556, T656, R719, B672)
+   |    | ['Decrypt Key P2 (32 Char):', 'Decrypt Key P2 (32 Char):Static', 'Static2']
+   |    | child_window(title="Decrypt Key P2 (32 Char):", auto_id="lblDecryptKey2", control_type="Text")
+   |    | 
+   |    | Edit - 'Decrypt Key P2 (32 Char):'    (L723, T620, R934, B645)
+   |    | ['Edit', 'Decrypt Key P1 (32 Char):Edit', 'Edit0', 'Edit1']
+   |    | child_window(title="Decrypt Key P2 (32 Char):", auto_id="tbDecryptKey1", control_type="Edit")
+   |    | 
+   |    | Edit - ''    (L723, T653, R933, B678)
+   |    | ['Edit2', 'Decrypt Key P2 (32 Char):Edit']
+   |    | child_window(auto_id="tbDecryptKey2", control_type="Edit")
+   |    | 
+   |    | TabControl - ''    (L580, T314, R938, B424)
+   |    | ['TabControlSerial', 'ArNav Series Firmware Update 1.1.0TabControl', 'TabControl', 'TabControlTCP']
+   |    | child_window(auto_id="tcConnType", control_type="Tab")
+   |    |    | 
+   |    |    | Pane - 'Serial'    (L585, T341, R933, B419)
+   |    |    | ['SerialPane', 'Serial', 'Pane', 'Serial0', 'Serial1']
+   |    |    | child_window(title="Serial", auto_id="tabPage1", control_type="Pane")
+   |    |    |    | 
+   |    |    |    | Button - 'Reload'    (L844, T370, R919, B400)
+   |    |    |    | ['Button', 'ReloadButton', 'Reload', 'Button0', 'Button1']
+   |    |    |    | child_window(title="Reload", auto_id="resetComButton", control_type="Button")
+   |    |    |    | 
+   |    |    |    | ComboBox - 'COM39'    (L681, T371, R839, B397)
+   |    |    |    | ['ComboBox', 'COM39ComboBox', 'COM39']
+   |    |    |    | child_window(title="COM39", auto_id="portSelectComboBox", control_type="ComboBox")
+   |    |    |    |    | 
+   |    |    |    |    | Edit - ''    (L685, T375, R814, B394)
+   |    |    |    |    | ['Edit3', 'Serial Port:Edit']
+   |    |    |    |    | child_window(auto_id="1001", control_type="Edit")
+   |    |    |    |    | 
+   |    |    |    |    | Button - 'Open'    (L819, T373, R838, B397)
+   |    |    |    |    | ['Button2', 'OpenButton', 'Open']
+   |    |    |    |    | child_window(title="Open", control_type="Button")
+   |    |    |    | 
+   |    |    |    | Static - 'Serial Port:'    (L601, T375, R674, B391)
+   |    |    |    | ['Serial Port:Static', 'Serial Port:', 'Static3']
+   |    |    |    | child_window(title="Serial Port:", auto_id="serialPortLabel", control_type="Text")
+   |    |    | 
+   |    |    | TabItem - 'Serial'    (L583, T316, R636, B339)
+   |    |    | ['TabItem', 'Serial2', 'SerialTabItem', 'TabItem0', 'TabItem1']
+   |    |    | child_window(title="Serial", control_type="TabItem")
+   |    |    | 
+   |    |    | TabItem - 'TCP'    (L635, T316, R688, B339)
+   |    |    | ['TabItem2', 'TCP', 'TCPTabItem']
+   |    |    | child_window(title="TCP", control_type="TabItem")
+   |    | 
+   |    | Static - 'Config File Path:'    (L574, T465, R679, B481)
+   |    | ['Config File Path:Static', 'Config File Path:', 'Static4']
+   |    | child_window(title="Config File Path:", auto_id="configFilePathLabel", control_type="Text")
+   |    | 
+   |    | Edit - 'Device Name:'    (L681, T461, R839, B486)
+   |    | ['Edit4', 'Config File Path:Edit']
+   |    | child_window(title="Device Name:", auto_id="burnFilePathTextBox", control_type="Edit")
+   |    | 
+   |    | Static - 'Device Name:'    (L586, T589, R680, B605)
+   |    | ['Device Name:', 'Device Name:Static', 'Static5']
+   |    | child_window(title="Device Name:", auto_id="deviceNameLabel", control_type="Text")
+   |    | 
+   |    | Edit - 'Device Part No:'    (L680, T584, R838, B609)
+   |    | ['Edit5', 'Device Name:Edit']
+   |    | child_window(title="Device Part No:", auto_id="deviceNameTextBox", control_type="Edit")
+   |    | 
+   |    | Static - 'Device Part No:'    (L576, T556, R680, B572)
+   |    | ['Device Part No:', 'Device Part No:Static', 'Static6']
+   |    | child_window(title="Device Part No:", auto_id="devPartLabel", control_type="Text")
+   |    | 
+   |    | Edit - 'Device Serial No:'    (L680, T553, R838, B578)
+   |    | ['Edit6', 'Device Part No:Edit']
+   |    | child_window(title="Device Serial No:", auto_id="devPartNoTextBox", control_type="Edit")
+   |    | 
+   |    | Static - 'Device Serial No:'    (L568, T528, R681, B544)
+   |    | ['Device Serial No:', 'Static7', 'Device Serial No:Static']
+   |    | child_window(title="Device Serial No:", auto_id="devSerialLabel", control_type="Text")
+   |    | 
+   |    | Edit - 'Hardware Version:'    (L680, T523, R838, B548)
+   |    | ['Edit7', 'Device Serial No:Edit']
+   |    | child_window(title="Hardware Version:", auto_id="serialNumberTextBox", control_type="Edit")
+   |    | 
+   |    | Static - 'Hardware Version:'    (L556, T495, R674, B511)
+   |    | ['Hardware Version:Static', 'Hardware Version:', 'Static8']
+   |    | child_window(title="Hardware Version:", auto_id="hwVersLabel", control_type="Text")
+   |    | 
+   |    | Edit - 'label1'    (L680, T491, R838, B516)
+   |    | ['Edit8', 'Hardware Version:Edit']
+   |    | child_window(title="label1", auto_id="hwVersionTextBox", control_type="Edit")
+   |    | 
+   |    | Static - '%0'    (L898, T764, R924, B780)
+   |    | ['%0', '%0Static', 'Static9']
+   |    | child_window(title="%0", auto_id="progressLabel", control_type="Text")
+   |    | 
+   |    | Button - 'Browse'    (L845, T428, R920, B458)
+   |    | ['Button3', 'Browse', 'BrowseButton', 'Browse0', 'Browse1', 'BrowseButton0', 'BrowseButton1']
+   |    | child_window(title="Browse", auto_id="button1", control_type="Button")
+   |    | 
+   |    | Static - 'ArNav Series Firmware Update 1.1.0'    (L605, T239, R914, B262)
+   |    | ['ArNav Series Firmware Update 1.1.0', 'ArNav Series Firmware Update 1.1.0Static', 'Static10']
+   |    | child_window(title="ArNav Series Firmware Update 1.1.0", auto_id="titleLabel", control_type="Text")
+   |    | 
+   |    | Button - 'START'    (L679, T726, R824, B776)
+   |    | ['Button4', 'START', 'STARTButton']
+   |    | child_window(title="START", auto_id="startButton", control_type="Button")
+   |    | 
+   |    | Progress - ''    (L560, T784, R955, B813)
+   |    | ['Decrypt Key P2 (32 Char):Progress', 'Progress']
+   |    | child_window(auto_id="bootloaderProgressBar", control_type="ProgressBar")
+   |    | 
+   |    | Edit - ''    (L681, T431, R839, B456)
+   |    | ['Edit9', 'Hex File Path:Edit']
+   |    | child_window(auto_id="filePathTextBox", control_type="Edit")
+   |    | 
+   |    | Static - 'Hex File Path:'    (L589, T434, R680, B450)
+   |    | ['Hex File Path:', 'Static11', 'Hex File Path:Static']
+   |    | child_window(title="Hex File Path:", auto_id="filePathLabel", control_type="Text")
+   |    | 
+   |    | Document - ''    (L960, T231, R1358, B812)
+   |    | ['Document', 'ArNav Series Firmware Update 1.1.0Document', 'Hex File Path:Document']
+   |    | child_window(auto_id="progressTextBox", control_type="Document")
+   |    | 
+   |    | Button - 'Browse'    (L845, T461, R920, B491)
+   |    | ['Button5', 'Browse2', 'BrowseButton2']
+   |    | child_window(title="Browse", auto_id="burnBrowseButton", control_type="Button")
+   | 
+   | TitleBar - ''    (L566, T179, R1374, B214)
+   | ['TitleBar']
+   |    | 
+   |    | Menu - 'Sistem'    (L546, T185, R574, B213)
+   |    | ['Sistem', 'SistemMenu', 'Menu', 'Sistem0', 'Sistem1']
+   |    | child_window(title="Sistem", auto_id="MenuBar", control_type="MenuBar")
+   |    |    | 
+   |    |    | MenuItem - 'Sistem'    (L546, T185, R574, B213)
+   |    |    | ['SistemMenuItem', 'MenuItem', 'Sistem2']
+   |    |    | child_window(title="Sistem", control_type="MenuItem")
+   |    | 
+   |    | Button - 'Simge Durumuna Küçült'    (L1196, T176, R1256, B214)
+   |    | ['Button6', 'Simge Durumuna Küçült', 'Simge Durumuna KüçültButton']
+   |    | child_window(title="Simge Durumuna Küçült", control_type="Button")
+   |    | 
+   |    | Button - 'Ekraný Kapla'    (L1256, T176, R1315, B214)
+   |    | ['Button7', 'Ekraný KaplaButton', 'Ekraný Kapla']
+   |    | child_window(title="Ekraný Kapla", control_type="Button")
+   |    | 
+   |    | Button - 'Kapat'    (L1315, T176, R1375, B214)
+   |    | ['Button8', 'KapatButton', 'Kapat']
+   |    | child_window(title="Kapat", control_type="Button")

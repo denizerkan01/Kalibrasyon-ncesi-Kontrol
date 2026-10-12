@@ -2,6 +2,8 @@ firmware_version = "00A000000002T04B"
 device_name = "ArNav S3A"
 arview_path = r"C:\Program Files\ArView\ArView.exe"
 
+hw_ver = "M223A-A"
+
 base_path = r"C:\Users\Deniz Erkan\Desktop\test\Sistemler\Uretim Sonrasi Testi\S3A"
 
 device_folder = r"Device"

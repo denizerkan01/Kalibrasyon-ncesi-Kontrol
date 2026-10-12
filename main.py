@@ -11,6 +11,7 @@ import numpy as np
 
 from pywinauto.keyboard import send_keys
 from pywinauto.application import Application
+import SN_Yukleme as SN_Yukleme
 import AccTesti as AccTesti
 import GyroTesti as GyroTesti
 import MagnTesti as MagnTesti
@@ -18,6 +19,14 @@ import KalibIdentityTesti as KalibIdentityTesti
 import UartRs232Testi as UartRs232Testi
 
 import Gyro_Elements as Gyro_Elements
+
+"""import ctypes, sys
+
+if not ctypes.windll.shell32.IsUserAnAdmin():
+    ctypes.windll.shell32.ShellExecuteW(
+        None, "runas", sys.executable, " ".join(f'"{a}"' for a in sys.argv), None, 1
+    )
+    sys.exit()"""
 
 
 #Çalıştırılan dosya konumu bulunur
@@ -91,13 +100,59 @@ def find_limit_file_m2_gr(pn_dvc, file_path):
 
     return m2_gr_limitdegerleri_v00
 
+def load_sn_m2_gr(pn_dvc, file_path):
+
+
+    limit_file_path = os.path.join(file_path, "Limit Dosyaları", f"{pn_dvc}_SN.txt")
+
+    with open(limit_file_path, "r", encoding="utf-8") as file:
+        sn = file.read().strip()
+
+    return sn         
+
 def launch_arview(path):
     global active_dlg
-    app = Application(backend="uia").start(path)
+    app = Application(backend="uia").start(path, work_dir=os.path.dirname(path))
     dlg = app.window(auto_id="FormMain", control_type="Window")
     dlg.wait("visible ready", timeout=60)
     active_dlg = dlg
     return dlg
+
+def device_sn(device_folder):
+    dlg = launch_arview(path_arview) 
+    time.sleep(5)
+
+    ports = list(serial.tools.list_ports.comports())
+    
+    target_standard = fnc.find_port("Standard", ports)
+
+    if not fnc.try_connect(dlg, target_standard, "Standard"):
+        print("GUI_INFO|custom|Sisteme bağlanılamamaktadır.")
+        sys.exit("!!! Can't Connect to the Device !!!")
+
+    dlg.child_window(title="Settings", control_type="Button").click_input()
+    time.sleep(5)
+    dlg.child_window(title="Copy to Clipboard", control_type="Pane").click_input()
+    time.sleep(5)
+    send_keys("%{F4}")
+    dlg.child_window(title="Disconnect", control_type="Button").click_input()
+    time.sleep(5)
+    send_keys("%{F4}")
+
+    devicesn_folder = os.path.join(base_path, device_folder)
+
+    config_path = os.path.join(devicesn_folder, "config.txt")
+    clipboard_content = pyperclip.paste()
+    
+    with open(config_path, "w", encoding="utf-8") as f:
+        f.write(clipboard_content)
+
+
+    with open(config_path, 'r') as file:
+        for line in file:
+            if line.startswith('DeviceSN'):
+                return line.split('=', 1)[1].strip().strip('"')
+    return None
 
 def device_pn(device_folder):
 
@@ -139,7 +194,7 @@ def device_pn(device_folder):
     return None
 
 
-def _main():
+def main():
 
     fnc.check_stop_requested()
 
@@ -147,7 +202,9 @@ def _main():
 
     device_folder_name = "Device"
 
+    sn_dvc = device_sn(device_folder_name)
     pn_dvc = device_pn(device_folder_name)
+
     fnc.check_stop_requested()
 
     print("PN:", pn_dvc)
@@ -157,18 +214,32 @@ def _main():
         limit_data_m2_gr = find_limit_file_m2_gr(pn_dvc, base_path)
         limits = SimpleNamespace(**limit_data_m2_gr)
         print("M2 sistemi kullanılıyor")
+        hw_ver = limits.hw_ver
+        print("M2 HW:", hw_ver)
     elif pn_dvc == "S3A097190":
         limit_data = find_limit_file(pn_dvc, base_path)
         limits = SimpleNamespace(**limit_data)
         print("S3A sistemi kullanılıyor")
+        hw_ver = limits.hw_ver
+        print("S3A HW:", hw_ver)
 
     
     time.sleep(3)
     fnc.check_stop_requested()
 
     dlg = launch_arview(limits.arview_path) 
+
+    print("SN:",sn_dvc)
+
+    device_name = limits.device_name
+
+    sn_load = load_sn_m2_gr(pn_dvc, base_path)
+    print("SN:", sn_load)
+
+    dvc = SN_Yukleme.SN_Yukleme(dlg,sn_dvc, base_path, hw_ver, pn_dvc, device_name, sn_load)
+    print("DVC:",dvc)
     
-    ports = list(serial.tools.list_ports.comports())
+    """ports = list(serial.tools.list_ports.comports())
     
     target_standard = fnc.find_port("Standard", ports)
 
@@ -287,7 +358,7 @@ def main():
                 if active_dlg.exists():
                     active_dlg.close()
             except Exception:
-                pass
+                pass"""
     
 
 
