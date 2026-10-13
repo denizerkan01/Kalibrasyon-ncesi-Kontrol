@@ -14,6 +14,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent
 PAGE = ROOT / "web_gui.html"
 STOP_FILE = ROOT / ".kalib_stop_requested"
+FW_UPDATE_FILE = ROOT / ".kalib_fw_update_completed"
 HOST = "127.0.0.1"
 PORT = 8765
 
@@ -22,6 +23,8 @@ process: subprocess.Popen[str] | None = None
 log_lines: deque[str] = deque(maxlen=300)
 started_at: float | None = None
 part_number: str | None = None
+serial_number: str | None = None
+fw_update_pending = False
 
 
 def read_saved_part_number() -> str | None:
@@ -64,12 +67,14 @@ def state() -> dict:
             "returncode": process.returncode if process and not running else None,
             "started_at": started_at,
             "part_number": part_number or read_saved_part_number(),
+            "serial_number": serial_number,
+            "fw_update_pending": fw_update_pending and running,
             "logs": list(log_lines),
         }
 
 
 def read_output(child: subprocess.Popen[str]) -> None:
-    global part_number
+    global part_number, serial_number, fw_update_pending
     assert child.stdout is not None
     for line in child.stdout:
         clean = line.rstrip()
@@ -77,18 +82,28 @@ def read_output(child: subprocess.Popen[str]) -> None:
             log_lines.append(clean)
             if clean.startswith("@@PART_NUMBER:"):
                 part_number = clean.split(":", 1)[1].strip()
+            elif clean.startswith("@@SERIAL_NUMBER:"):
+                serial_number = clean.split(":", 1)[1].strip()
+            elif clean == "@@FW_UPDATE_PENDING":
+                fw_update_pending = True
+            elif clean == "@@FW_UPDATE_COMPLETED":
+                fw_update_pending = False
 
 def start_tests() -> tuple[int, dict]:
-    global process, started_at, part_number
+    global process, started_at, part_number, serial_number, fw_update_pending
     with lock:
         if process is not None and process.poll() is None:
             return 409, state()
         try:
             STOP_FILE.unlink(missing_ok=True)
+            FW_UPDATE_FILE.unlink(missing_ok=True)
             log_lines.clear()
             part_number = None
+            serial_number = None
+            fw_update_pending = False
             env = os.environ.copy()
             env["KALIB_STOP_FILE"] = str(STOP_FILE)
+            env["KALIB_FW_UPDATE_FILE"] = str(FW_UPDATE_FILE)
             process = subprocess.Popen(
                 [sys.executable, "-u", str(ROOT / "main.py")],
                 cwd=ROOT,
@@ -107,6 +122,17 @@ def start_tests() -> tuple[int, dict]:
         except Exception as exc:
             log_lines.append(f"Could not start Python: {exc}")
             return 500, state()
+
+
+def confirm_fw_update() -> tuple[int, dict]:
+    global fw_update_pending
+    with lock:
+        if process is None or process.poll() is not None or not fw_update_pending:
+            return 409, {"error": "Firmware update confirmation is not currently requested.", **state()}
+        FW_UPDATE_FILE.touch()
+        fw_update_pending = False
+        log_lines.append("Firmware update confirmation received from the GUI.")
+        return 202, state()
 
 
 def request_stop() -> tuple[int, dict]:
@@ -165,18 +191,23 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/api/stop":
             code, result = request_stop()
             self._json(code, result)
+        elif path == "/api/fw-update-complete":
+            code, result = confirm_fw_update()
+            self._json(code, result)
         else:
             self._json(404, {"error": "Not found."})
 
     def log_message(self, fmt: str, *args: object) -> None:
-        print(f"[web] {self.address_string()} - {fmt % args}")
+        if sys.stdout is not None:
+            print(f"[web] {self.address_string()} - {fmt % args}")
 
 
 def main() -> None:
     if not PAGE.is_file():
         raise SystemExit(f"GUI page not found: {PAGE}")
-    print(f"Kalib GUI available at http://{HOST}:{PORT}/")
-    print("This service is local to this PC. Keep the device connected before starting tests.")
+    if sys.stdout is not None:
+        print(f"Kalib GUI available at http://{HOST}:{PORT}/")
+        print("This service is local to this PC. Keep the device connected before starting tests.")
     ThreadingHTTPServer((HOST, PORT), Handler).serve_forever()
 
 

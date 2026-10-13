@@ -14,6 +14,23 @@ from pywinauto.timings import TimeoutError as PWTimeoutError
 class StopRequested(Exception):
     """Raised when the web interface requests a safe stop between steps."""
 
+def target_meas(dlg, checkbox_states_target_meas):
+
+    dlg.child_window(title="Settings", control_type="Button").click_input()
+
+    dlg.child_window(title="TargetMeas", control_type="ListItem").double_click_input()
+
+    for name, desired in checkbox_states_target_meas:
+        checkbox = dlg.child_window(title=name, control_type="CheckBox")
+        state = checkbox.get_toggle_state()
+        if state != desired:
+            checkbox.click_input()
+
+    dlg.child_window(title="OK", control_type="Button").click_input()
+
+    dlg.child_window(title="Save", control_type="Pane").click_input()
+    time.sleep(5)
+    send_keys("%{F4}")
 
 def stop_requested():
     stop_file = os.environ.get("KALIB_STOP_FILE")

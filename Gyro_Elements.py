@@ -3,7 +3,8 @@ import general_functions as fnc
 import numpy as np
 
 
-def any_same(sensor_data):
+
+"""def any_same(sensor_data):
 
     #Aynı data bulunca True return eder
     #False result data sette aynı veri yok demek
@@ -79,8 +80,69 @@ def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time):
 
 
 
+    return result"""
+
+
+
+
+
+
+def any_same_consecutive(sensor_data, min_run=3):
+
+    data = np.asarray(sensor_data)
+    result = {"has_duplicates": False, "runs": [], "row": []}
+
+    if data.size < min_run:
+        return result
+
+    same = data[1:] == data[:-1]            
+    padded = np.concatenate(([False], same, [False])).astype(int)
+    edges = np.diff(padded)
+    starts = np.where(edges == 1)[0]        
+    ends = np.where(edges == -1)[0]          
+    lengths = ends - starts + 1
+
+    for s, e, n in zip(starts, ends, lengths):
+        if n >= min_run:
+            result["runs"].append({
+                "start_row": int(s) + 1,
+                "end_row": int(e) + 1,
+                "value": data[s].item(),
+                "length": int(n),
+            })
+
+    result["has_duplicates"] = len(result["runs"]) > 0
+    result["row"] = [f"{r['start_row']}-{r['end_row']}" for r in result["runs"]]
     return result
 
 
+def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time, settle_time=2, min_run=3):
+    time.sleep(settle_time)
+    log_file = fnc.auto_start(dlg, base_path, gyro_el_folder, sleep_time)
+    print("Log File:", log_file)
 
-    
+    try:
+        data = fnc.parse_log(log_file)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"Test 7: log okunamadı -> {e}")
+        return None
+
+    axis_results = {
+        "X": any_same_consecutive(data.gyroX, min_run),
+        "Y": any_same_consecutive(data.gyroY, min_run),
+        "Z": any_same_consecutive(data.gyroZ, min_run),
+    }
+
+    result = {f"Gyro{ax}_El": r["has_duplicates"] for ax, r in axis_results.items()}
+    result["Gyro_Success"] = any(result.values())  
+
+    if not result["Gyro_Success"]:
+        print("Test 7: BAŞARILI")
+    else:
+        print("Test 7: BAŞARISIZ")
+        for ax, r in axis_results.items():
+            for run in r["runs"]:
+                print(f"Gyro {ax}: satır {run['start_row']}-{run['end_row']} "
+                      f"arası aynı veri ({run['value']}), {run['length']} adet")
+
+    return result
