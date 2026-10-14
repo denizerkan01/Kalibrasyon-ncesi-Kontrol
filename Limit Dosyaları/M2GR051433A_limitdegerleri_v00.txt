@@ -1,11 +1,15 @@
 firmware_version = "00A10901C012002F"
 device_name = "ArNav M2-GR"
+<<<<<<< HEAD
 hw_ver = "M223A-A"
+=======
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 arview_path = r"C:\Program Files\ArView\ArView.exe"
 
 base_path = r"C:\Users\Deniz Erkan\Desktop\test\Sistemler\Uretim Sonrasi Testi\M2\GR"
 
 data_select_folder = "Data Select"
+<<<<<<< HEAD
 kalibrasyon_kontrol_folder = "Kalibrasyon Matris Testi"
 hard_reset_folder = r"Reset Testi\Hard Reset"
 soft_reset_folder = r"Reset Testi\Soft Reset"
@@ -61,6 +65,28 @@ min_magn_norm = 0.37
 max_magn_norm = 0.57
 
 var_magn_value = 0.01
+=======
+kalibrasyon_kontrol_folder = "Kalibrasyon Testi"
+hard_reset_folder = r"Reset Testi\Hard Reset"
+soft_reset_folder = r"Reset Testi\Soft Reset"
+acc_acilis_folder = r"ACC Norm Testi\Acilis Testi"
+acc_dondurme_folder = r"ACC Norm Testi\Dondurme Testi"
+euler_kontrol_folder = r"Euler Kontrol Testi"
+gyro_z_folder = r"Gyro Z Testi"
+gps_folder = r"GPS Testi"
+magn_norm_folder = r"Magn Testi"
+rs422_folder = r"RS422"
+
+sleep_time_data_select = 5
+sleep_time_reset_testi = 5
+sleep_time_acc_norm_gyro_acilis = 5
+sleep_time_acc_dondurme = 5
+sleep_time_euler_kontrol = 5
+sleep_time_gyroz = 60
+sleep_time_gps = 180
+sleep_time_cift_anten = 300
+sleep_time_magn = 120
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
 gps_testi_id = 35
 low_rate_rtk_id = 79
@@ -110,7 +136,11 @@ checkbox_states_target_meas_gyroz_testi_m2gr = [
 checkbox_states_general = [
     ("Accelerometer", 1),
     ("Gyroscope", 1),
+<<<<<<< HEAD
     ("Magnetometer", 1),
+=======
+    ("Magnetometer", 0),
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     ("Euler Angles", 1),
     ("Latitude Longitude Altitude", 0),
     ("Pressure", 1),
@@ -178,7 +208,11 @@ expected_columns_gps = [
 
 ref_matrix_acc = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 ref_matrix_gyro = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+<<<<<<< HEAD
 ref_matrix_magn = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 
 magn_config_1 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 magn_config_0 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+=======
+ref_matrix_magn = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371

@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 import serial.tools.list_ports
 from pywinauto.timings import TimeoutError as PWTimeoutError
 
+<<<<<<< HEAD
 
 class StopRequested(Exception):
     """Raised when the web interface requests a safe stop between steps."""
@@ -41,6 +42,8 @@ def check_stop_requested():
     if stop_requested():
         raise StopRequested("Stop requested from the web interface")
 
+=======
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 def find_port(keyword, ports):
     return next((p.device for p in ports if keyword in p.description), None)
 
@@ -217,6 +220,7 @@ def auto_start(dlg,  base_path, sub_folder, sleep_time):
 
     while file_size == 0:
 
+<<<<<<< HEAD
         if stop_requested():
             try:
                 dlg.child_window(title="Stop", control_type="Button").click_input()
@@ -224,6 +228,8 @@ def auto_start(dlg,  base_path, sub_folder, sleep_time):
                 pass
             raise StopRequested("Stop requested during sensor capture")
 
+=======
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
         try:
             fd = os.open(latest_log, os.O_RDONLY)
             try:
@@ -241,8 +247,11 @@ def auto_start(dlg,  base_path, sub_folder, sleep_time):
 
             break
 
+<<<<<<< HEAD
         time.sleep(0.25)
 
+=======
+>>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     time.sleep(1)
 
     if file_size == 0:
