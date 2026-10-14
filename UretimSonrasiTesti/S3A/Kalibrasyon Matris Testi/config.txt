@@ -1,5 +1,5 @@
 MiscAdminMode = 
-DeviceSN = "00000003"
+DeviceSN = "00000008"
 DevicePN = "S3A097190"
 DeviceName = "ArNav S3A"
 FirmwareVersion = "00A00000000S310A"
@@ -41,4 +41,4 @@ MiscRsvB1 = [1,0.08,0,-0.15,0.15]
 MiscRsvB2 = [1,0.1,0,0,0.3]
 MiscRsvB3 = [1,0.0872665,0,0,1]
 MiscRsvB4 = [1,1,0,-10,10]
-MiscRsvB5 = [1,0.174533,0,-0.523599,0.523599]
+MiscRsvB5 = [1,0.139626,0,-0.261799,0.261799]

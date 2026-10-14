@@ -12,6 +12,8 @@ def check_calibration_test(sensor_data, min_magn_norm, max_magn_norm, var_magn_v
                 "MagnZVar": False,
                 "MagnVar": False,
                 "MagnResult": False,
+                "MinMagnNorm": 0.0,
+                "MaxMagnNorm": 0.0,
 
     }
 
@@ -25,6 +27,9 @@ def check_calibration_test(sensor_data, min_magn_norm, max_magn_norm, var_magn_v
                 mean_magn_Y ** 2 + 
                 mean_magn_Z ** 2
             )
+
+    result["MinMagnNorm"] = np.min(magn_Norm)
+    result["MaxMagnNorm"] = np.max(magn_Norm)
 
 
     if min_magn_norm <= magn_Norm <= max_magn_norm:

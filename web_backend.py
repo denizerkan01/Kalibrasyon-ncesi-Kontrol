@@ -66,7 +66,7 @@ def state() -> dict:
             "device_port": standard,
             "returncode": process.returncode if process and not running else None,
             "started_at": started_at,
-            "part_number": part_number or read_saved_part_number(),
+            "part_number": part_number,
             "serial_number": serial_number,
             "fw_update_pending": fw_update_pending and running,
             "logs": list(log_lines),

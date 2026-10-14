@@ -1,3 +1,4 @@
+import os
 import time
 import general_functions as fnc
 import numpy as np
@@ -135,6 +136,12 @@ def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time, settle_time=2, min
 
     result = {f"Gyro{ax}_El": r["has_duplicates"] for ax, r in axis_results.items()}
     result["Gyro_Success"] = any(result.values())  
+    result["log_file"] = os.path.basename(str(log_file)) if log_file else ""
+    result["row"] = [
+        f"{ax}: {row}"
+        for ax, axis_result in axis_results.items()
+        for row in axis_result["row"]
+    ]
 
     if not result["Gyro_Success"]:
         print("Test 7: BAŞARILI")

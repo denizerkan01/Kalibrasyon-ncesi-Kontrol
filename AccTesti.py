@@ -16,11 +16,26 @@ def check_calibration_test(sensor_data, max_norm_value, min_norm_value, min_acc_
                 "AccZVar": False,
                 "AccVar": False,
                 "AccResult": False,
+                "MinAccX": 0.0,
+                "MaxAccX": 0.0,
+                "MinAccY": 0.0,
+                "MaxAccY": 0.0,
+                "MinAccZ": 0.0,
+                "MaxAccZ": 0.0,
     }
 
     mean_acc_X = np.mean(sensor_data.accX)
     mean_acc_Y = np.mean(sensor_data.accY)
     mean_acc_Z = np.mean(sensor_data.accZ)
+
+    result["MinAccX"] = np.min(sensor_data.accX)
+    result["MaxAccX"] = np.max(sensor_data.accX)
+
+    result["MinAccY"] = np.min(sensor_data.accY)
+    result["MaxAccY"] = np.max(sensor_data.accY)
+
+    result["MinAccZ"] = np.min(sensor_data.accZ)
+    result["MaxAccZ"] = np.max(sensor_data.accZ)
 
 
     acc_Norm = np.sqrt(

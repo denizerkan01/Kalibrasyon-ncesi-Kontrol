@@ -21,6 +21,8 @@ import UartRs232Testi as UartRs232Testi
 
 import Gyro_Elements as Gyro_Elements
 
+import Sonuc as Sonuc
+
 from pywinauto import mouse
 
 """import ctypes, sys
@@ -53,6 +55,7 @@ def create_folder(base_path):
 
     relative_paths = [
         "Device",
+        "Test Sonuclari",
         os.path.join("UretimSonrasiTesti", "S3A", "Kalibrasyon Matris Testi"),
         os.path.join("UretimSonrasiTesti", "S3A", "FW Testi"),
         os.path.join("UretimSonrasiTesti", "S3A", "Acc Testi"),
@@ -64,6 +67,7 @@ def create_folder(base_path):
 
     relative_paths_m2_gr = [
             "Device",
+            "Test Sonuclari",
             os.path.join("UretimSonrasiTesti", "M2GR", "Kalibrasyon Matris Testi"),
             os.path.join("UretimSonrasiTesti", "M2GR", "FW Testi"),
             os.path.join("UretimSonrasiTesti", "M2GR", "Acc Testi"),
@@ -382,7 +386,7 @@ def main():
     
 
     result_uart = UartRs232Testi.UartRs232Testi(dlg, folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix_acc, limits.firmware_version)
-    print("@@RESULT:6:" + ("PASS" if result_uart == True else "FAIL"), flush=True)
+    print("@@RESULT:6:" + ("PASS" if result_uart is not None and result_uart.get("Conn_Result") is True else "FAIL"), flush=True)
     fnc.check_stop_requested()
 
     if not fnc.try_connect(dlg, target_standard, "Standard"):
@@ -487,6 +491,8 @@ def main():
     time.sleep(5)
     send_keys("%{F4}")
     send_keys("%{F4}")
+
+    Sonuc.Sonuc(pn_dvc, dvc, base_path, results_Kalibrasyon_Kontrol, results_Acc_Acilis, results_Gyro_Acilis, results_Magn, result_uart, result_Gyro_El)
 
 
 """def main():

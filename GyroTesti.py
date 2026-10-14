@@ -16,11 +16,26 @@ def check_calibration_test(sensor_data, max_gyro_value, min_gyro_value, min_gyro
                 "GyroZVar": False,
                 "GyroVar": False,
                 "GyroResult": False,
+                "MinGyroX": 0.0,
+                "MaxGyroX": 0.0,
+                "MinGyroY": 0.0,
+                "MaxGyroY": 0.0,
+                "MinGyroZ": 0.0,
+                "MaxGyroZ": 0.0,
     }
 
     mean_gyro_X = np.mean(sensor_data.gyroX)
     mean_gyro_Y = np.mean(sensor_data.gyroY)
     mean_gyro_Z = np.mean(sensor_data.gyroZ)
+
+    result["MinGyroX"] = np.min(sensor_data.gyroX)
+    result["MaxGyroX"] = np.max(sensor_data.gyroX)
+    
+    result["MinGyroY"] = np.min(sensor_data.gyroY)
+    result["MaxGyroY"] = np.max(sensor_data.gyroY)
+    
+    result["MinGyroZ"] = np.min(sensor_data.gyroZ)
+    result["MaxGyroZ"] = np.max(sensor_data.gyroZ)
 
     gyro_Norm = np.sqrt(
             mean_gyro_X ** 2 + 

@@ -1,6 +1,6 @@
 MiscAdminMode = 
 FirmwareVersion = "00A10901C012002F"
-DeviceSN = "00000006"
+DeviceSN = "00000009"
 DevicePN = "M2GR051433A"
 DeviceName = "ArNav M2-GR"
 MiscCalibMagFac = [1,0,0,0,1,0,0,0,1,0,0,0]
