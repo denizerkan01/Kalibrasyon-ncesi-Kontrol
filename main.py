@@ -1,15 +1,11 @@
 import os
 import sys
-<<<<<<< HEAD
 import glob
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 import time
 import pyperclip
 import serial.tools.list_ports
 import general_functions as fnc
 from types import SimpleNamespace
-<<<<<<< HEAD
 
 import numpy as np
 
@@ -17,16 +13,12 @@ import numpy as np
 from pywinauto.keyboard import send_keys
 from pywinauto.application import Application
 import SN_Yukleme as SN_Yukleme
-=======
-from pywinauto.keyboard import send_keys
-from pywinauto.application import Application
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 import AccTesti as AccTesti
 import GyroTesti as GyroTesti
 import MagnTesti as MagnTesti
 import KalibIdentityTesti as KalibIdentityTesti
-<<<<<<< HEAD
 import UartRs232Testi as UartRs232Testi
+
 
 import Gyro_Elements as Gyro_Elements
 
@@ -42,13 +34,10 @@ if not ctypes.windll.shell32.IsUserAnAdmin():
     )
     sys.exit()"""
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
 #Çalıştırılan dosya konumu bulunur
 path_arview = r"C:\Program Files\ArView\ArView.exe"
 base_path = os.path.dirname(os.path.abspath(__file__)) 
-<<<<<<< HEAD
 print(base_path)
 active_dlg = None
 
@@ -63,30 +52,21 @@ def open_data_select(dlg, checkbox_states):
             checkbox.click_input()
 
     dlg.child_window(title="Save", control_type="Pane", found_index=0).click_input()
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
 def create_folder(base_path):
 
     relative_paths = [
         "Device",
-<<<<<<< HEAD
         "Test Sonuclari",
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
         os.path.join("UretimSonrasiTesti", "S3A", "Kalibrasyon Matris Testi"),
         os.path.join("UretimSonrasiTesti", "S3A", "FW Testi"),
         os.path.join("UretimSonrasiTesti", "S3A", "Acc Testi"),
         os.path.join("UretimSonrasiTesti", "S3A", "Gyro Testi"),
-<<<<<<< HEAD
         os.path.join("UretimSonrasiTesti", "S3A", "Gyro Elements Testi"),
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
         os.path.join("UretimSonrasiTesti", "S3A", "Magn Testi"),
         os.path.join("UretimSonrasiTesti", "S3A", "Uart RS 232 Testi"),
     ]
 
-<<<<<<< HEAD
     relative_paths_m2_gr = [
             "Device",
             "Test Sonuclari",
@@ -99,19 +79,14 @@ def create_folder(base_path):
             os.path.join("UretimSonrasiTesti", "M2GR", "Uart RS 232 Testi"),
         ]
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     for rel_path in relative_paths:
         full_path = os.path.join(base_path, rel_path)
         os.makedirs(full_path, exist_ok=True)
 
-<<<<<<< HEAD
     for rel_path_m2_gr in relative_paths_m2_gr:
         full_path_m2_gr = os.path.join(base_path, rel_path_m2_gr)
         os.makedirs(full_path_m2_gr, exist_ok=True)
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 def find_limit_file(pn_dvc, file_path):
 
     limit_file_path = os.path.join(file_path, "Limit Dosyaları")
@@ -123,7 +98,6 @@ def find_limit_file(pn_dvc, file_path):
 
     return s3a_limitdegerleri_v00
 
-<<<<<<< HEAD
 def find_limit_file_m2_gr(pn_dvc, file_path):
 
     limit_file_path_m2_gr = os.path.join(file_path, "Limit Dosyaları")
@@ -213,14 +187,6 @@ def device_sn(device_folder):
     with open(limit_file_sn, "w", encoding="utf-8") as file:
         file.write(sn)"""
 
-=======
-def launch_arview(path):
-    app = Application(backend="uia").start(path)
-    dlg = app.window(auto_id="FormMain", control_type="Window")
-    dlg.wait("visible ready", timeout=60)
-    return dlg
-
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 def device_pn(device_folder):
 
     dlg = launch_arview(path_arview) 
@@ -229,10 +195,6 @@ def device_pn(device_folder):
     ports = list(serial.tools.list_ports.comports())
     
     target_standard = fnc.find_port("Standard", ports)
-<<<<<<< HEAD
-=======
-    #target_standard = fnc.find_port("Enhanced", ports)
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     
     if fnc.try_connect(dlg, target_standard, "Standard"):
         print("Connect device with Standard Port")
@@ -240,10 +202,7 @@ def device_pn(device_folder):
     else:
         sys.exit("!!! Can't Connect to the Device !!!")
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     dlg.child_window(title="Settings", control_type="Button").click_input()
     time.sleep(5)
     dlg.child_window(title="Copy to Clipboard", control_type="Pane").click_input()
@@ -270,16 +229,12 @@ def device_pn(device_folder):
 
 def main():
 
-<<<<<<< HEAD
     fnc.check_stop_requested()
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     create_folder(base_path)
 
     device_folder_name = "Device"
 
-<<<<<<< HEAD
     
 
     sn_dvc = device_sn(device_folder_name)
@@ -289,7 +244,7 @@ def main():
 
     fnc.check_stop_requested()
 
-    print("PN:", pn_dvc)
+    #print("PN:", pn_dvc)
 
     print(f"pn_dvc (raw) = {pn_dvc!r}")   # debug: remove once resolved
     pn_dvc = str(pn_dvc).strip().upper()
@@ -297,20 +252,22 @@ def main():
     if pn_dvc == "M2GR051433A":
         limit_data_m2_gr = find_limit_file_m2_gr(pn_dvc, base_path)
         limits = SimpleNamespace(**limit_data_m2_gr)
-        print("M2 sistemi kullanılıyor")
+        #print("M2 sistemi kullanılıyor")
         hw_ver = limits.hw_ver
         device_name = limits.device_name
-        print("M2 HW:", hw_ver)
+        #print("M2 HW:", hw_ver)
     elif pn_dvc == "S3A097190":
         limit_data = find_limit_file(pn_dvc, base_path)
         limits = SimpleNamespace(**limit_data)
         gyro_data_0 = find_gyro_config_0_file_s3a(base_path)
         config_0 = gyro_data_0["CalibMag"]
-        print("Config 0:", config_0)
-        print("S3A sistemi kullanılıyor")
+        #print("Config 0:", config_0)
+        #print("S3A sistemi kullanılıyor")
         hw_ver = limits.hw_ver
         device_name = limits.device_name
-        print("S3A HW:", hw_ver)
+        firmware = limits.firmware_version
+        #print("FW:", firmware)
+        #print("S3A HW:", hw_ver)
 
     else:
         # Fail early with a clear message instead of UnboundLocalError later
@@ -322,7 +279,7 @@ def main():
 
     dlg = launch_arview(path_arview) 
 
-    print("SN:",sn_dvc)
+    #print("SN:",sn_dvc)
 
     #device_name = limits.device_name
 
@@ -331,10 +288,10 @@ def main():
 
     file_sn = find_sn_file(base_path)
     
-    print("Dosyadan okunan SN:",file_sn)
+    #print("Dosyadan okunan SN:",file_sn)
 
     dvc = SN_Yukleme.SN_Yukleme(dlg,sn_dvc, base_path, hw_ver, pn_dvc, device_name, file_sn)
-    print("DVC:",dvc)
+    #print("DVC:",dvc)
 
     #next_sn = str(int(file_sn) + 1).zfill(len(file_sn))
     #print("Yeni SN:", next_sn)
@@ -345,15 +302,6 @@ def main():
     #time.sleep(5)
     send_keys("%{F4}")
 
-=======
-    #
-    pn_dvc = device_pn(device_folder_name)
-
-    limit_data = find_limit_file(pn_dvc, base_path)
-    limits = SimpleNamespace(**limit_data)
-    
-    time.sleep(5)
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
     dlg = launch_arview(limits.arview_path) 
     
@@ -364,7 +312,6 @@ def main():
     if not fnc.try_connect(dlg, target_standard, "Standard"):
         sys.exit("!!! Can't Connect to the Device !!!")
 
-<<<<<<< HEAD
     #dlg.print_control_identifiers(filename="tree4.txt")
 
     uretim_folder_path = os.path.join(base_path, r"UretimSonrasiTesti")
@@ -382,32 +329,19 @@ def main():
     print("@@PHASE:1,2", flush=True)
     
     print("***Test 1 - Kalibrasyon Matris Kontrol Testi Sonucu:")
-
+    #print(limits.firmware_version)
     results_Kalibrasyon_Kontrol = KalibIdentityTesti.KalibIdentityTesti(dlg, folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix_acc, limits.firmware_version)
+    #print(results_Kalibrasyon_Kontrol)
     fnc.check_stop_requested()
     print("@@RESULT:1:" + ("PASS" if results_Kalibrasyon_Kontrol["calib_ctrl_success"] == True else "FAIL"), flush=True)
     print("@@RESULT:2:" + ("PASS" if results_Kalibrasyon_Kontrol["firmware_version_match"] == True else "FAIL"), flush=True)
 
 
     if results_Kalibrasyon_Kontrol["calib_ctrl_success"] == True:
-=======
-    uretim_folder_path = os.path.join(base_path, r"UretimSonrasiTesti")
-    s3a_folder_path = os.path.join(uretim_folder_path, r"S3A")
-
-    #Test 1: Tüm Kalibrasyon Matrisleri Identity mi?
-
-    #print("***Test 1 - Kalibrasyon Matris Kontrol Testi Sonucu:")
-
-    results_Kalibrasyon_Kontrol = KalibIdentityTesti.KalibIdentityTesti(dlg, s3a_folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix, limits.firmware_version)
-
-    if results_Kalibrasyon_Kontrol["calib_ctrl_success"] == True:
-        #print("Sistemde yüklü kalibrasyon yoktur.")
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
         print("Test 1: BAŞARILI")
     else:
         print("Test 1: BAŞARISIZ")
         if results_Kalibrasyon_Kontrol["acc_is_calibrated"] == False:
-<<<<<<< HEAD
             print("Sistemde Acc kalibrasyonu bulunmaktadır")
 
         if results_Kalibrasyon_Kontrol["gyro_is_calibrated"] == False:
@@ -471,7 +405,7 @@ def main():
     print("@@PHASE:7", flush=True)
 
     if pn_dvc == "M2GR051433A":
-        print("M2")
+        #print("M2")
         fnc.target_meas(dlg, limits.checkbox_states_target_meas_gyroz_testi)
             
     elif pn_dvc == "S3A097190":
@@ -510,14 +444,15 @@ def main():
         dlg.child_window(title="Reset", control_type="Pane").click_input()
 
     acilis_folder_gyro_el = fnc.navigate_to_folder(dlg, folder_path, limits.gyro_el_folder)
+    print("DEBUG module:", Gyro_Elements.__file__)
     #result_Gyro_El = Gyro_Elements.Gyro_Elements(dlg, folder_path, limits.gyro_el_folder, limits.sleep_time_gyro_el)
-    result_Gyro_El = Gyro_Elements.Gyro_Elements(dlg, folder_path, limits.gyro_el_folder, limits.sleep_time_gyro_el, settle_time=2, min_run=3)
+    result_Gyro_El = Gyro_Elements.Gyro_Elements(dlg, folder_path, limits.gyro_el_folder, limits.sleep_time_gyro_el, settle_time=2, min_run=10)
     print("@@RESULT:7:" + ("PASS" if result_Gyro_El is not None and result_Gyro_El.get("Gyro_Success") == False else "FAIL"), flush=True)
     fnc.check_stop_requested()
     print("@@PHASE:DONE", flush=True)
 
     if pn_dvc == "M2GR051433A":
-        print("M2")
+        #print("M2")
         fnc.target_meas(dlg, limits.checkbox_states_target_meas_gyroz_testi_m2gr)
         
                 
@@ -587,140 +522,10 @@ def main():
     
 
 
-=======
-            print("--Acc")
-
-        if results_Kalibrasyon_Kontrol["gyro_is_calibrated"] == False:
-            print("--Gyro")
-
-        if results_Kalibrasyon_Kontrol["magn_is_calibrated"] == False:
-            print("--Magn")
-
-        if results_Kalibrasyon_Kontrol["acc_is_calibrated"] == False or results_Kalibrasyon_Kontrol["gyro_is_calibrated"] == False or results_Kalibrasyon_Kontrol["magn_is_calibrated"] == False:
-            sys.exit("Kalibrasyon matrislerini initial hale getiriniz.")
-
-    #print("***Test 2 - FW Versiyon Kontrol Testi Sonucu:")
-
-    if results_Kalibrasyon_Kontrol["firmware_version_match"] == True:
-        print("Test 2: BAŞARILI")
-        #print("Sistemde bulunan FW doğrudur.")
-    elif results_Kalibrasyon_Kontrol["firmware_version_match"] == False:
-        print("Test 2: BAŞARISIZ")
-        sys.exit("Sistemde bulunan FW yanlıştır. 00A000000001000A yüklü olması beklenmektedir.")
-
-    #print("***Test 3 - Acc Kontrol Testi Sonucu:")
-    acilis_folder_acc = fnc.navigate_to_folder(dlg, s3a_folder_path, limits.acc_folder)
-
-    results_Acc_Acilis = AccTesti.test_acc(dlg, s3a_folder_path, acilis_folder_acc,  limits.max_norm_value, limits.min_norm_value, limits.min_acc_X_value, limits.max_acc_X_value, limits.min_acc_Y_value, limits.max_acc_Y_value, limits.min_acc_Z_value, limits.max_acc_Z_value, limits.var_acc_value, limits.sleep_time_acc)
-    if results_Acc_Acilis["AccResult"] == True:
-        print("Test 3: BAŞARILI")
-    elif results_Acc_Acilis["AccResult"] == False:
-        if results_Acc_Acilis["AccNormValue"] == False:
-            print("Acc Norm Hatalı")
-        if results_Acc_Acilis["AccXValue"] == False:
-            print("Acc X Değer Aralığı Yanlış")
-        if results_Acc_Acilis["AccYValue"] == False:
-            print("Acc Y Değer Aralığı Yanlış")
-        if results_Acc_Acilis["AccZValue"] == False:
-            print("Acc Z Değer Aralığı Yanlış")
-        if results_Acc_Acilis["AccXVar"] == False:
-            print("Acc Var X Değer Aralığı Yanlış")
-        if results_Acc_Acilis["AccYVar"] == False:
-            print("Acc Var Y Değer Aralığı Yanlış")
-        if results_Acc_Acilis["AccZVar"] == False:
-            print("Acc Var Z Değer Aralığı Yanlış")
-        if results_Acc_Acilis["AccNormValue"] or results_Acc_Acilis["AccValue"] or results_Acc_Acilis["AccVar"]:
-            sys.exit("Test 3: BAŞARISIZ")
-
-    #print("***Test 4 - Gyro Kontrol Testi Sonucu:")
-
-    acilis_folder_gyro = fnc.navigate_to_folder(dlg, s3a_folder_path, limits.gyro_folder)
-    
-    results_Gyro_Acilis = GyroTesti.test_gyro(dlg, s3a_folder_path, acilis_folder_gyro,  limits.max_gyro_value, limits.min_gyro_value, limits.min_gyro_X_value, limits.max_gyro_X_value, limits.min_gyro_Y_value, limits.max_gyro_Y_value, limits.min_gyro_Z_value, limits.max_gyro_Z_value, limits.var_gyro_value, limits.sleep_time_gyro)
-        
-    if results_Gyro_Acilis["GyroResult"] == True:
-        print("Test 4: BAŞARILI")
-    elif results_Gyro_Acilis["GyroResult"] == False:
-        if results_Gyro_Acilis["GyroNormValue"] == False:
-            print("Gyro Norm Hatalı")
-        if results_Gyro_Acilis["GyroXValue"] == False:
-            print("Gyro X Değer Aralığı Yanlış")
-        if results_Gyro_Acilis["GyroYValue"] == False:
-            print("Gyro Y Değer Aralığı Yanlış")
-        if results_Gyro_Acilis["GyroZValue"] == False:
-            print("Gyro Z Değer Aralığı Yanlış")
-        if results_Gyro_Acilis["GyroXVar"] == False:
-            print("Gyro Var X Değer Aralığı Yanlış")
-        if results_Gyro_Acilis["GyroYVar"] == False:
-            print("Gyro Var Y Değer Aralığı Yanlış")
-        if results_Gyro_Acilis["GyroZVar"] == False:
-            print("Gyro Var Z Değer Aralığı Yanlış")
-        if results_Gyro_Acilis["GyroNormValue"] or results_Gyro_Acilis["GyroValue"] or results_Gyro_Acilis["GyroVar"]:
-            sys.exit("Test 4: BAŞARISIZ")
-
-
-    #print("***Test 5 - Magn Kontrol Testi Sonucu:")
-    
-    acilis_folder_magn = fnc.navigate_to_folder(dlg, s3a_folder_path, limits.magn_folder)
-        
-    results_Magn = MagnTesti.test_magn(dlg, s3a_folder_path, acilis_folder_magn,  limits.min_magn_norm, limits.max_magn_norm, limits.var_magn_value, limits.sleep_time_gyro)
-
-    if results_Magn["MagnResult"] == True:
-        print("Test 5: BAŞARILI")
-    elif results_Magn["MagnResult"] == False:
-        if results_Magn["MagnNormValue"] == False:
-            print("Magn Norm Hatalı")
-        if results_Magn["MagnXVar"] == False:
-            print("Magn Var X Değer Aralığı Yanlış")
-        if results_Magn["MagnYVar"] == False:
-            print("Magn Var Y Değer Aralığı Yanlış")
-        if results_Magn["MagnZVar"] == False:
-            print("Magn Var Z Değer Aralığı Yanlış")
-        if results_Magn["MagnNormValue"] or results_Magn["MagnVar"]:
-            sys.exit("Test 5: BAŞARISIZ")
-
-    #print("Test 6 - UART Testi Sonucu:")
-    dlg.child_window(title="Disconnect", control_type="Button").click_input()
-    
-    ports = list(serial.tools.list_ports.comports())
-    target_enhanced = fnc.find_port("Enhanced", ports)
-    target_standard = fnc.find_port("Standard", ports)
-
-    result_UART = False
-    
-    if fnc.try_connect(dlg, target_enhanced, "Enhanced"):
-        results_uart_conn = KalibIdentityTesti.KalibIdentityTesti(dlg, s3a_folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix, limits.firmware_version)
-        if results_uart_conn["firmware_version_match"] == True:
-            result_UART = True
-        else:
-            result_UART = False
-
-    dlg.child_window(title="Disconnect", control_type="Button").click_input()
-    
-    if fnc.try_connect(dlg, target_standard, "Standard"):
-        results_232_conn = KalibIdentityTesti.KalibIdentityTesti(dlg, s3a_folder_path, limits.kalibrasyon_kontrol_folder, limits.ref_matrix, limits.firmware_version)
-        if results_232_conn["firmware_version_match"] == True:
-            result_232 = True
-        else:
-            result_232 = False
-
-    result_conn = result_UART and result_232
-
-    if result_conn == True:
-        print("Test 6: BAŞARILI")
-    else:
-        if result_UART == False:
-            print("UART ile Bağlanılamadı")
-        if result_232 == False:
-                    print("RS232 ile Bağlanılamadı")
-
-    dlg.child_window(title="Disconnect", control_type="Button").click_input()
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     main()
 
 
@@ -730,6 +535,3 @@ if __name__ == "__main__":
 
 
 
-=======
-    main()
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371

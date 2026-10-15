@@ -12,11 +12,8 @@ def check_calibration_test(sensor_data, min_magn_norm, max_magn_norm, var_magn_v
                 "MagnZVar": False,
                 "MagnVar": False,
                 "MagnResult": False,
-<<<<<<< HEAD
                 "MinMagnNorm": 0.0,
                 "MaxMagnNorm": 0.0,
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
     }
 
@@ -31,12 +28,9 @@ def check_calibration_test(sensor_data, min_magn_norm, max_magn_norm, var_magn_v
                 mean_magn_Z ** 2
             )
 
-<<<<<<< HEAD
     result["MinMagnNorm"] = np.min(magn_Norm)
     result["MaxMagnNorm"] = np.max(magn_Norm)
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
     if min_magn_norm <= magn_Norm <= max_magn_norm:
         result["MagnNormValue"] = True
@@ -89,7 +83,6 @@ def test_magn(dlg, base_path, magn_folder, min_magn_norm, max_magn_norm, var_mag
         
     results_calib_test = check_calibration_test(sensor_data_magn_acilis, min_magn_norm, max_magn_norm, var_magn_value)
 
-<<<<<<< HEAD
     if results_calib_test["MagnResult"] == True:
         print("Test 5: BAŞARILI")
     elif results_calib_test["MagnResult"] == False:
@@ -105,6 +98,4 @@ def test_magn(dlg, base_path, magn_folder, min_magn_norm, max_magn_norm, var_mag
         if results_calib_test["MagnNormValue"] or results_calib_test["MagnVar"]:
             print("Test 5: BAŞARISIZ")
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     return results_calib_test

@@ -1,16 +1,13 @@
-<<<<<<< HEAD
+
 firmware_version = "00A00000000S310A"
 device_name = "ArNav S3A"
 arview_path = r"C:\Program Files\ArView\ArView.exe"
 
 hw_ver = "M223A-A"
 
-=======
-firmware_version = "00A000000001000A"
-device_name = "ArNav S3A"
-arview_path = r"C:\Program Files\ArView\ArView.exe"
 
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
+
+
 base_path = r"C:\Users\Deniz Erkan\Desktop\test\Sistemler\Uretim Sonrasi Testi\S3A"
 
 device_folder = r"Device"
@@ -19,10 +16,10 @@ acc_folder = r"Acc Testi"
 gyro_folder = r"Gyro Testi"
 magn_folder = r"Magn Testi"
 uart_folder = r"Uart RS 232 Testi"
-<<<<<<< HEAD
+
 gyro_el_folder = r"Gyro Elements Testi"
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
+
+
 
 
 sleep_time_data_select = 5
@@ -33,24 +30,23 @@ sleep_time_euler_kontrol = 5
 sleep_time_gyro = 2
 sleep_time_magn = 2
 sleep_time_uart = 5
-<<<<<<< HEAD
+
 sleep_time_gyro_el = 5
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
+
 
 acc_acilis_successfull_needed = 10
 
 max_norm_value = 10.0
 min_norm_value = 9.60
 
-min_acc_X_value = -0.4
-max_acc_X_value = 0.4
+min_acc_X_value = -0.6
+max_acc_X_value = 0.6
 
-min_acc_Y_value = -0.4
-max_acc_Y_value = 0.4
+min_acc_Y_value = -0.6
+max_acc_Y_value = 0.6
 
-min_acc_Z_value = -10.102
-max_acc_Z_value = -9.502
+min_acc_Z_value = -10.302
+max_acc_Z_value = -9.302
 
 var_acc_value =  0.001
 
@@ -119,11 +115,8 @@ ref_matrix_acc = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 ref_matrix_gyro = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 ref_matrix_magn = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 
-<<<<<<< HEAD
+
 ref_matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 
 magn_config_1 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
 magn_config_0 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-=======
-ref_matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371

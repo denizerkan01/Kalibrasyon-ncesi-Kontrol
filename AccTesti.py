@@ -16,22 +16,18 @@ def check_calibration_test(sensor_data, max_norm_value, min_norm_value, min_acc_
                 "AccZVar": False,
                 "AccVar": False,
                 "AccResult": False,
-<<<<<<< HEAD
                 "MinAccX": 0.0,
                 "MaxAccX": 0.0,
                 "MinAccY": 0.0,
                 "MaxAccY": 0.0,
                 "MinAccZ": 0.0,
                 "MaxAccZ": 0.0,
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     }
 
     mean_acc_X = np.mean(sensor_data.accX)
     mean_acc_Y = np.mean(sensor_data.accY)
     mean_acc_Z = np.mean(sensor_data.accZ)
 
-<<<<<<< HEAD
     result["MinAccX"] = np.min(sensor_data.accX)
     result["MaxAccX"] = np.max(sensor_data.accX)
 
@@ -41,8 +37,6 @@ def check_calibration_test(sensor_data, max_norm_value, min_norm_value, min_acc_
     result["MinAccZ"] = np.min(sensor_data.accZ)
     result["MaxAccZ"] = np.max(sensor_data.accZ)
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
 
     acc_Norm = np.sqrt(
             mean_acc_X ** 2 + 
@@ -119,7 +113,6 @@ def test_acc(dlg, base_path, acc_folder, max_norm_value, min_norm_value, min_acc
         
     results_calib_test = check_calibration_test(sensor_data_acc_acilis, max_norm_value, min_norm_value, min_acc_X_value, max_acc_X_value, min_acc_Y_value, max_acc_Y_value, min_acc_Z_value, max_acc_Z_value, var_acc_value)
 
-<<<<<<< HEAD
     if results_calib_test["AccResult"] == True:
         print("Test 3: BAŞARILI")
     elif results_calib_test["AccResult"] == False:
@@ -141,6 +134,4 @@ def test_acc(dlg, base_path, acc_folder, max_norm_value, min_norm_value, min_acc
         if results_calib_test["AccNormValue"] or results_calib_test["AccValue"] or results_calib_test["AccVar"]:
             print("BAŞARISIZ")
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     return results_calib_test

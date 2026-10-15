@@ -88,7 +88,7 @@ def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time):
 
 
 
-def any_same_consecutive(sensor_data, min_run=3):
+def any_same_consecutive(sensor_data, min_run=10):
 
     data = np.asarray(sensor_data)
     result = {"has_duplicates": False, "runs": [], "row": []}
@@ -117,7 +117,8 @@ def any_same_consecutive(sensor_data, min_run=3):
     return result
 
 
-def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time, settle_time=2, min_run=3):
+def Gyro_Elements(dlg, base_path, gyro_el_folder, sleep_time, settle_time=2, min_run=10):
+    print("DEBUG min_run:", min_run)
     time.sleep(settle_time)
     log_file = fnc.auto_start(dlg, base_path, gyro_el_folder, sleep_time)
     print("Log File:", log_file)

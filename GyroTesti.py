@@ -16,22 +16,18 @@ def check_calibration_test(sensor_data, max_gyro_value, min_gyro_value, min_gyro
                 "GyroZVar": False,
                 "GyroVar": False,
                 "GyroResult": False,
-<<<<<<< HEAD
                 "MinGyroX": 0.0,
                 "MaxGyroX": 0.0,
                 "MinGyroY": 0.0,
                 "MaxGyroY": 0.0,
                 "MinGyroZ": 0.0,
                 "MaxGyroZ": 0.0,
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     }
 
     mean_gyro_X = np.mean(sensor_data.gyroX)
     mean_gyro_Y = np.mean(sensor_data.gyroY)
     mean_gyro_Z = np.mean(sensor_data.gyroZ)
 
-<<<<<<< HEAD
     result["MinGyroX"] = np.min(sensor_data.gyroX)
     result["MaxGyroX"] = np.max(sensor_data.gyroX)
     
@@ -41,8 +37,6 @@ def check_calibration_test(sensor_data, max_gyro_value, min_gyro_value, min_gyro
     result["MinGyroZ"] = np.min(sensor_data.gyroZ)
     result["MaxGyroZ"] = np.max(sensor_data.gyroZ)
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     gyro_Norm = np.sqrt(
             mean_gyro_X ** 2 + 
             mean_gyro_Y ** 2 + 
@@ -116,7 +110,6 @@ def test_gyro(dlg, base_path, gyro_folder,  max_gyro_value, min_gyro_value, min_
             
     results_calib_test = check_calibration_test(sensor_data_gyro_acilis,  max_gyro_value, min_gyro_value, min_gyro_X_value, max_gyro_X_value, min_gyro_Y_value, max_gyro_Y_value, min_gyro_Z_value, max_gyro_Z_value, var_gyro_value)
 
-<<<<<<< HEAD
     if results_calib_test["GyroResult"] == True:
         print("Test 4: BAŞARILI")
     elif results_calib_test["GyroResult"] == False:
@@ -138,6 +131,4 @@ def test_gyro(dlg, base_path, gyro_folder,  max_gyro_value, min_gyro_value, min_
         if results_calib_test["GyroNormValue"] or results_calib_test["GyroValue"] or results_calib_test["GyroVar"]:
             print("BAŞARISIZ")
 
-=======
->>>>>>> 61722c604d416dc33fed4d5583b26a493a8f5371
     return results_calib_test

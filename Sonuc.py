@@ -30,9 +30,9 @@ HEADERS = {
 
 Result_Values = {
 
-    "E": ("-0.4 ile 0.4 Arası", 30),
-    "F": ("-0.4 ile 0.4 Arası", 30),
-    "G": ("-10.102 ile -9.502 Arası", 30),
+    "E": ("-0.6 ile 0.6 Arası", 30),
+    "F": ("-0.6 ile 0.6 Arası", 30),
+    "G": ("-10.302 ile -9.302 Arası", 30),
     "I": ("-0.4 ile 0.4 Arası", 30),
     "J": ("-0.4 ile 0.4 Arası", 30),
     "K": ("-0.4 ile 0.4 Arası", 30),
